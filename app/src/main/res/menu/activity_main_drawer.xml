@@ -5,21 +5,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_scanData"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
+            android:title="扫描QR记录"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
-        <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_generatData"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:title="生成QR记录"/>
     </group>
 
     <item android:title="Communicate">
