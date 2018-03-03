@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity.this);
                 intentIntegrator.setOrientationLocked(false)//设置扫码的方向
+                        .setCaptureActivity(ScanViewActivity.class)
                         .setPrompt("将条码放置于框内")//设置下方提示文字
                         .setCameraId(0)//前置或后置摄像头
                         .setBeepEnabled(false)//扫码提示音，默认开启
