@@ -14,10 +14,13 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.io.UnsupportedEncodingException;
+
 public class GenerateQRActivity extends AppCompatActivity {
 
     EditText message;
     Button confirm;
+    Button cancel;
     ImageView QR;
 
     @Override
@@ -27,23 +30,36 @@ public class GenerateQRActivity extends AppCompatActivity {
 
         message = (EditText) findViewById(R.id.message);
         confirm = (Button) findViewById(R.id.confirm);
+        cancel = (Button) findViewById(R.id.cancel);
         QR = (ImageView) findViewById(R.id.QR);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createCode(v);
+                try {
+                    createCode(v);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
 
-    public void createCode(View view) {
+    //输入的内容生成二维码
+    public void createCode(View view) throws UnsupportedEncodingException {
         Bitmap bitmap;
         BitMatrix matrix;
-        MultiFormatWriter writer = new MultiFormatWriter();
-        String words = message.getText().toString();//输入的内容
+        String words = message.getText().toString();
         try {
-            matrix = writer.encode(words, BarcodeFormat.QR_CODE, 500, 500);
+            matrix = new MultiFormatWriter().encode(new String(message.getText().toString().getBytes("UTF-8"),"ISO-8859-1"),
+                    BarcodeFormat.QR_CODE, 1000, 1000);
             BarcodeEncoder encoder = new BarcodeEncoder();
             bitmap = encoder.createBitmap(matrix);
             QR.setImageBitmap(bitmap);
