@@ -81,14 +81,12 @@ public class ScanViewActivity extends AppCompatActivity implements DecoratedBarc
     //手电开
     @Override
     public void onTorchOn() {
-        Toast.makeText(this, "开灯", Toast.LENGTH_SHORT).show();
         isLightOn = true;
     }
 
     //手电关
     @Override
     public void onTorchOff() {
-        Toast.makeText(this, "关灯", Toast.LENGTH_SHORT).show();
         isLightOn = false;
     }
 }

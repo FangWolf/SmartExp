@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
                 IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity.this);
                 intentIntegrator.setOrientationLocked(false)//设置扫码的方向
                         .setCaptureActivity(ScanViewActivity.class)
-                        .setPrompt("将条码放置于框内")//设置下方提示文字
+                        .setPrompt("对准二维码开始扫描")//设置下方提示文字
                         .setCameraId(0)//前置或后置摄像头
                         .setBeepEnabled(false)//扫码提示音，默认开启
                         .initiateScan();
