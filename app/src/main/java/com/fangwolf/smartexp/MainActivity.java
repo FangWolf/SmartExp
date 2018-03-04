@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -20,16 +21,20 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    TextView resultQR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         FloatingActionButton fabScanQR = (FloatingActionButton) findViewById(R.id.fabScanQR);
+
+        resultQR = (TextView) findViewById(R.id.result);
 
         fabScanQR.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity
             if(result.getContents() == null) {
                 Toast.makeText(this, "退出了扫描", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "QR: " + result.getContents(), Toast.LENGTH_LONG).show();
+                resultQR.setText(result.getContents().toString());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
