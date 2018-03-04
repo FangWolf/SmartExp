@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.lang.reflect.GenericArrayType;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView resultQR;
@@ -33,9 +35,11 @@ public class MainActivity extends AppCompatActivity
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         FloatingActionButton fabScanQR = (FloatingActionButton) findViewById(R.id.fabScanQR);
+        FloatingActionButton fabGenerateQR = (FloatingActionButton) findViewById(R.id.fabGenerateQR);
 
         resultQR = (TextView) findViewById(R.id.result);
 
+        //扫描按钮
         fabScanQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +50,15 @@ public class MainActivity extends AppCompatActivity
                         .setCameraId(0)//前置或后置摄像头
                         .setBeepEnabled(false)//扫码提示音，默认开启
                         .initiateScan();
+
+            }
+        });
+        //生成按钮
+        fabGenerateQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GenerateQRActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -112,7 +125,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_scanData) {
 
-        } else if (id == R.id.nav_generatData) {
+        } else if (id == R.id.nav_generateData) {
 
         } else if (id == R.id.nav_share) {
 

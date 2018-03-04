@@ -9,7 +9,7 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="扫描QR记录"/>
         <item
-            android:id="@+id/nav_generatData"
+            android:id="@+id/nav_generateData"
             android:icon="@drawable/ic_menu_manage"
             android:title="生成QR记录"/>
     </group>

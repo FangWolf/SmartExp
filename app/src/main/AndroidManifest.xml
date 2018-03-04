@@ -24,7 +24,13 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
-        <activity android:name=".ScanViewActivity">
+        <activity
+            android:name=".ScanViewActivity"
+            android:label="扫描">
+         </activity>
+        <activity
+            android:name=".GenerateQRActivity"
+            android:label="生成">
         </activity>
     </application>
 
