@@ -2,7 +2,6 @@ package com.fangwolf.smartexp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +14,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.fabMenu);
         FloatingActionButton fabScanQR = (FloatingActionButton) findViewById(R.id.fabScanQR);
         FloatingActionButton fabGenerateQR = (FloatingActionButton) findViewById(R.id.fabGenerateQR);
 
@@ -41,12 +42,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity.this);
-                intentIntegrator.setOrientationLocked(false)//设置扫码的方向
+                intentIntegrator.setOrientationLocked(false)//扫码的方向
                         .setCaptureActivity(ScanViewActivity.class)
-                        .setPrompt("对准二维码开始扫描")//设置下方提示文字
+                        .setPrompt("对准二维码开始扫描")//下方提示文字
                         .setCameraId(0)//前置或后置摄像头
-                        .setBeepEnabled(false)//扫码提示音，默认开启
+                        .setBeepEnabled(true)//扫码提示音
                         .initiateScan();
+                fabMenu.close(false);//关闭浮动菜单
 
             }
         });
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, GenerateQRActivity.class);
                 startActivity(intent);
-
+                fabMenu.close(false);
             }
         });
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
-                Toast.makeText(this, "退出了扫描", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "退出扫描", Toast.LENGTH_LONG).show();
             } else {
                 resultQR.setText(result.getContents().toString());
             }

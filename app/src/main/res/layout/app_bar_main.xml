@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,29 +26,42 @@
         android:id="@+id/include"
         layout="@layout/content_main"/>
 
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|bottom"
+        android:padding="10dp"
+        app:menu_fab_hide_animation="@anim/fab_scale_up"
+        app:menu_fab_show_animation="@anim/fab_scale_down"
+        fab:menu_backgroundColor="#ccffffff"
+        fab:menu_colorNormal="#C7007D"
+        fab:menu_colorPressed="#E339A4"
+        fab:menu_colorRipple="#E366B5"
+        tools:layout_editor_absoluteX="-330dp">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabGenerateQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu_manage"
+            app:fab_label="生成二维码"
+            app:fab_size="mini"
+            fab:fab_colorNormal="#00BD39"
+            fab:fab_colorPressed="#37DE6A"
+            fab:fab_colorRipple="#64DE89"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabScanQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="66dp"
-        android:src="@drawable/ic_menu_camera"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabScanQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu_camera"
+            app:fab_label="扫描二维码"
+            app:fab_size="mini"
+            fab:fab_colorNormal="#0C5DA5"
+            fab:fab_colorPressed="#476BD6"
+            fab:fab_colorRipple="#6D87D6"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabGenerateQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_manage"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="116dp"/>
+    </com.github.clans.fab.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>
