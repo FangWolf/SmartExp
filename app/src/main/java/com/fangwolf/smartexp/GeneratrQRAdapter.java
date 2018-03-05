@@ -1,10 +1,13 @@
 package com.fangwolf.smartexp;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Loneweolf on 2018/3/5.
@@ -12,6 +15,7 @@ import java.util.List;
 
 public class GeneratrQRAdapter extends RecyclerView.Adapter {
 
+    //不同类型的布局
     public static final  int TYPE_Sname = 0;
     public static final  int TYPE_Sadress = 2;
     private List<MoreTypeBean> mData;
@@ -20,6 +24,7 @@ public class GeneratrQRAdapter extends RecyclerView.Adapter {
         this.mData = data;
     }
 
+    //判断item需要哪个布局
     @Override
     public int getItemViewType(int position) {
         MoreTypeBean moreTypeBean = mData.get(position);
@@ -30,6 +35,7 @@ public class GeneratrQRAdapter extends RecyclerView.Adapter {
         }
     }
 
+    //根据不同viewType，创建不同ViewHOlder实例
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
@@ -56,6 +62,7 @@ public class GeneratrQRAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
+    //创建不同的ViewHolder
     private class SnameHolder extends RecyclerView.ViewHolder {
         public SnameHolder(View itemView) {
             super(itemView);
