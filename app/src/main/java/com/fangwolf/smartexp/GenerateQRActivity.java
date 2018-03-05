@@ -3,6 +3,8 @@ package com.fangwolf.smartexp;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +17,13 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GenerateQRActivity extends AppCompatActivity {
+
+    RecyclerView mRecyclerview;
+    List<MoreTypeBean> mData;
 
     EditText message;
     Button confirm;
@@ -28,10 +35,16 @@ public class GenerateQRActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr);
 
+        //mRecyclerview.setLayoutManager(new LinearLayoutManager(this));//类似listview的效果
+
         message = (EditText) findViewById(R.id.message);
         confirm = (Button) findViewById(R.id.confirm);
         cancel = (Button) findViewById(R.id.cancel);
         QR = (ImageView) findViewById(R.id.QR);
+
+        inintView();
+        inintData();
+        inintViewOper();
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +63,27 @@ public class GenerateQRActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void inintViewOper() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerview.setLayoutManager(linearLayoutManager);
+        GeneratrQRAdapter adapter = new GeneratrQRAdapter(mData);
+        mRecyclerview.setAdapter(adapter);
+    }
+
+    private void inintData() {
+        mData = new ArrayList<>();
+        for (int i=0;i<2;i++) {
+            MoreTypeBean moreTypeBean = new MoreTypeBean();
+            moreTypeBean.type = i;
+            mData.add(moreTypeBean);
+
+        }
+    }
+
+    private void inintView() {
+        mRecyclerview = (RecyclerView) findViewById(R.id.recyclerviewGenerateQR);
     }
 
     //输入的内容生成二维码
