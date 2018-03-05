@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
-public class ScanViewActivity extends AppCompatActivity implements DecoratedBarcodeView.TorchListener{
+public class ScanQRActivity extends AppCompatActivity implements DecoratedBarcodeView.TorchListener{
 
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
@@ -21,7 +21,7 @@ public class ScanViewActivity extends AppCompatActivity implements DecoratedBarc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_scan_view);
+        setContentView(R.layout.activity_scan_qr);
 
         barcodeScannerView = (DecoratedBarcodeView) findViewById(R.id.dbv_custom);
         barcodeScannerView.setTorchListener(this);

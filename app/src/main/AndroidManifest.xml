@@ -25,7 +25,7 @@
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
         <activity
-            android:name=".ScanViewActivity"
+            android:name=".ScanQRActivity"
             android:label="扫描">
          </activity>
         <activity
