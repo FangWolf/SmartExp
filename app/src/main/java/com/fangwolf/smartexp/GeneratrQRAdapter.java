@@ -1,13 +1,10 @@
 package com.fangwolf.smartexp;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Loneweolf on 2018/3/5.
@@ -18,6 +15,7 @@ public class GeneratrQRAdapter extends RecyclerView.Adapter {
     //不同类型的布局
     public static final  int TYPE_Sname = 0;
     public static final  int TYPE_Sadress = 2;
+    public static final  int TYPE_Btn = 3;
     private List<MoreTypeBean> mData;
 
     public GeneratrQRAdapter(List<MoreTypeBean> data) {
@@ -30,8 +28,10 @@ public class GeneratrQRAdapter extends RecyclerView.Adapter {
         MoreTypeBean moreTypeBean = mData.get(position);
         if (moreTypeBean.type == 0) {
             return TYPE_Sname;
-        } else {
+        } else if(moreTypeBean.type ==1){
             return TYPE_Sadress;
+        } else {
+            return TYPE_Btn;
         }
     }
 
@@ -41,11 +41,14 @@ public class GeneratrQRAdapter extends RecyclerView.Adapter {
         View view;
 
         if (viewType == TYPE_Sname) {
-            view = View.inflate(parent.getContext(),R.layout.edit_item_1,null);
+            view = View.inflate(parent.getContext(),R.layout.edit_item_sname,null);
             return new SnameHolder(view);
-        } else {
-            view = View.inflate(parent.getContext(),R.layout.edit_item_2,null);
+        } else if (viewType == TYPE_Sadress){
+            view = View.inflate(parent.getContext(),R.layout.edit_item_sadress,null);
             return new SadressHolder(view);
+        } else {
+            view = View.inflate(parent.getContext(),R.layout.edit_item_sbtn,null);
+            return new BtnHolder(view);
         }
     }
 
@@ -71,6 +74,12 @@ public class GeneratrQRAdapter extends RecyclerView.Adapter {
 
     private class SadressHolder extends RecyclerView.ViewHolder {
         public SadressHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    private class BtnHolder extends RecyclerView.ViewHolder {
+        public BtnHolder(View itemView) {
             super(itemView);
         }
     }

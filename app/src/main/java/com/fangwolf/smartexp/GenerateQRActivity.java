@@ -35,8 +35,6 @@ public class GenerateQRActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr);
 
-        //mRecyclerview.setLayoutManager(new LinearLayoutManager(this));//类似listview的效果
-
         message = (EditText) findViewById(R.id.message);
         confirm = (Button) findViewById(R.id.confirm);
         cancel = (Button) findViewById(R.id.cancel);
@@ -65,16 +63,13 @@ public class GenerateQRActivity extends AppCompatActivity {
         });
     }
 
-    private void inintViewOper() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerview.setLayoutManager(linearLayoutManager);
-        GeneratrQRAdapter adapter = new GeneratrQRAdapter(mData);
-        mRecyclerview.setAdapter(adapter);
+    private void inintView() {
+        mRecyclerview = (RecyclerView) findViewById(R.id.recyclerviewGenerateQR);
     }
 
     private void inintData() {
         mData = new ArrayList<>();
-        for (int i=0;i<2;i++) {
+        for (int i=0;i<3;i++) {
             MoreTypeBean moreTypeBean = new MoreTypeBean();
             moreTypeBean.type = i;
             mData.add(moreTypeBean);
@@ -82,8 +77,11 @@ public class GenerateQRActivity extends AppCompatActivity {
         }
     }
 
-    private void inintView() {
-        mRecyclerview = (RecyclerView) findViewById(R.id.recyclerviewGenerateQR);
+    private void inintViewOper() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerview.setLayoutManager(linearLayoutManager);
+        GeneratrQRAdapter adapter = new GeneratrQRAdapter(mData);
+        mRecyclerview.setAdapter(adapter);
     }
 
     //输入的内容生成二维码
