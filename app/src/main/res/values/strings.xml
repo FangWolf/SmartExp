@@ -5,4 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string-array name="diqu">
+        <item>河南省-郑州市-高新区</item>
+        <item>河南省-郑州市-二七区</item>
+        <item>河南省-郑州市-金水区</item>
+        <item>河南省-开封市-顺河区</item>
+    </string-array>
 </resources>

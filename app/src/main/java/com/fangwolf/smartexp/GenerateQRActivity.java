@@ -25,7 +25,7 @@ import java.util.List;
 
 public class GenerateQRActivity extends AppCompatActivity {
 
-    EditText message;
+    EditText Sname2;
     Button confirm;
     Button cancel;
     ImageView QR;
@@ -35,7 +35,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr);
 
-        message = (EditText) findViewById(R.id.message);
+        Sname2 = (EditText) findViewById(R.id.Sname2);
         confirm = (Button) findViewById(R.id.confirm);
         cancel = (Button) findViewById(R.id.cancel);
         QR = (ImageView) findViewById(R.id.QR);
@@ -45,10 +45,10 @@ public class GenerateQRActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     //输入框不能为空
-                    if (TextUtils.isEmpty(message.getText())) {
+                    if (TextUtils.isEmpty(Sname2.getText())) {
                         Toast.makeText(GenerateQRActivity.this,"null",Toast.LENGTH_SHORT).show();
                     } else {
-                        Log.e("GenerateQRActivity","666"+message.getText().toString() );
+                        Log.e("GenerateQRActivity","666"+Sname2.getText().toString() );
                         createCode(v);
                     }
                 } catch (UnsupportedEncodingException e) {
@@ -69,9 +69,9 @@ public class GenerateQRActivity extends AppCompatActivity {
     public void createCode(View view) throws UnsupportedEncodingException {
         Bitmap bitmap;
         BitMatrix matrix;
-        String words = message.getText().toString();
+        String words = Sname2.getText().toString();
         try {
-            matrix = new MultiFormatWriter().encode(new String(message.getText().toString().getBytes("UTF-8"),"ISO-8859-1"),
+            matrix = new MultiFormatWriter().encode(new String(Sname2.getText().toString().getBytes("UTF-8"),"ISO-8859-1"),
                     BarcodeFormat.QR_CODE, 1000, 1000);
             BarcodeEncoder encoder = new BarcodeEncoder();
             bitmap = encoder.createBitmap(matrix);
