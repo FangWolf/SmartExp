@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="地址："/>
+                android:text="详细地址："/>
 
             <EditText
                 android:id="@+id/SDadress"
@@ -118,7 +118,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="地址："/>
+                android:text="详细地址："/>
 
             <EditText
                 android:id="@+id/RDadress"
