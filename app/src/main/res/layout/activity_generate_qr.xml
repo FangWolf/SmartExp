@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,248 +13,118 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <TextView
+                android:id="@+id/Smessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="4dp">
+                android:gravity="center"
+                android:text="寄件人信息"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="25dp"/>
 
-                <TextView
-                    android:id="@+id/Smessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="寄件人信息"
-                    android:textColor="@android:color/holo_red_light"
-                    android:textSize="25dp"/>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="4dp">
+                android:text="姓名："/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Sname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="姓名："/>
-
-                    <EditText
-                        android:id="@+id/Sname2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:maxLines="1"/>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <EditText
+                android:id="@+id/Sname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="4dp">
+                android:maxLines="1"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Stel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="电话："/>
-
-                    <EditText
-                        android:id="@+id/Stel2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:maxLines="1"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="4dp">
+                android:text="电话："/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Sadress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="地区："/>
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/diqu">
-                    </Spinner>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <EditText
+                android:id="@+id/Sphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="4dp">
+                android:inputType="number|numberDecimal"
+                android:maxLines="1"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/SDadress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="地址："/>
-
-                    <EditText
-                        android:id="@+id/SDadress2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:maxLines="3"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                app:cardCornerRadius="4dp">
+                android:text="地区："/>
 
-                <TextView
-                    android:id="@+id/Rmessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="收件人信息"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:textSize="25dp"/>
-            </android.support.v7.widget.CardView>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:entries="@array/diqu">
+            </Spinner>
 
-            <android.support.v7.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="4dp">
+                android:text="地址："/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Rname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="姓名："/>
-
-                    <EditText
-                        android:id="@+id/Rname2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:background="@null"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <EditText
+                android:id="@+id/SDadress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:cardCornerRadius="4dp">
+                android:maxLines="3"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Rtel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="电话："/>
-
-                    <EditText
-                        android:id="@+id/Rtel2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:background="@null"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <TextView
+                android:id="@+id/Rmessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:cardCornerRadius="4dp">
+                android:gravity="center"
+                android:text="收件人信息"
+                android:textColor="@android:color/holo_blue_bright"
+                android:textSize="25dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Radress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="地区："/>
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/diqu">
-                    </Spinner>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:cardCornerRadius="4dp">
+                android:text="姓名："/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <EditText
+                android:id="@+id/Rname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"/>
 
-                    <TextView
-                        android:id="@+id/RDadress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="地址："/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="电话："/>
 
-                    <EditText
-                        android:id="@+id/RDadress2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="3"
-                        android:background="@null"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+            <EditText
+                android:id="@+id/Rphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|numberDecimal"
+                android:maxLines="1"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="地区："/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:entries="@array/diqu">
+            </Spinner>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="地址："/>
+
+            <EditText
+                android:id="@+id/RDadress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -277,7 +146,6 @@
                     android:text="确定生成"/>
 
             </LinearLayout>
-
 
             <ImageView
                 android:id="@+id/QR"
