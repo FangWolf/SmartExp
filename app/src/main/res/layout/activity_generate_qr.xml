@@ -53,6 +53,7 @@
                 android:text="地区："/>
 
             <Spinner
+                android:id="@+id/Sadress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -109,6 +110,7 @@
                 android:text="地区："/>
 
             <Spinner
+                android:id="@+id/Radress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"

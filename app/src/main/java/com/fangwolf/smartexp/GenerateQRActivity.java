@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -31,6 +32,10 @@ public class GenerateQRActivity extends AppCompatActivity {
     EditText Rname;
     EditText Rphone;
     EditText RDadress;
+
+    Spinner Sadress;
+    Spinner Radress;
+
     Button confirm;
     Button cancel;
     ImageView QR;
@@ -49,6 +54,9 @@ public class GenerateQRActivity extends AppCompatActivity {
         Rphone = (EditText) findViewById(R.id.Rphone);
         RDadress = (EditText) findViewById(R.id.RDadress);
 
+        Sadress = (Spinner) findViewById(R.id.Sadress);
+        Radress = (Spinner) findViewById(R.id.Radress);
+
         confirm = (Button) findViewById(R.id.confirm);
         cancel = (Button) findViewById(R.id.cancel);
         QR = (ImageView) findViewById(R.id.QR);
@@ -58,8 +66,8 @@ public class GenerateQRActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     //输入框不能为空
-                    if (TextUtils.isEmpty(Sname.getText()) /*|| TextUtils.isEmpty(Sphone.getText()) || TextUtils.isEmpty(SDadress.getText()) ||
-                            TextUtils.isEmpty(Rname.getText()) || TextUtils.isEmpty(Rphone.getText()) || TextUtils.isEmpty(RDadress.getText())*/) {
+                    if (TextUtils.isEmpty(Sname.getText()) || TextUtils.isEmpty(Sphone.getText()) || TextUtils.isEmpty(SDadress.getText()) ||
+                            TextUtils.isEmpty(Rname.getText()) || TextUtils.isEmpty(Rphone.getText()) || TextUtils.isEmpty(RDadress.getText())) {
                         Toast.makeText(GenerateQRActivity.this,"null",Toast.LENGTH_SHORT).show();
                     } else {
                         Log.e("GenerateQRActivity","name="+Sname.getText().toString()+" phone="+Sphone.getText().toString()+" adress="+SDadress.getText().toString());
@@ -82,18 +90,21 @@ public class GenerateQRActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //优化内存
-        bitmap.recycle();
-        bitmap=null;
+        if (bitmap != null) {
+            //优化内存
+            bitmap.recycle();
+            bitmap = null;
+        }
     }
 
     //输入的内容生成二维码
     public void createCode(View view) throws UnsupportedEncodingException {
 
         BitMatrix matrix;
-        StringBuilder stringBuilder = new StringBuilder("");
-        stringBuilder.append(Sname.getText()).append(Sphone.getText()).append(SDadress.getText())
-                .append(Rname.getText()).append(Rphone.getText()).append(RDadress.getText());
+        //拼接生成的信息
+        StringBuilder stringBuilder = new StringBuilder("fangwolf&");
+        stringBuilder.append((Sname.getText())+"&").append((Sphone.getText())+"&").append((Sadress.getSelectedItem()+"&")).append((SDadress.getText()+"&"))
+                .append((Rname.getText())+"&").append((Rphone.getText()+"&")).append((Radress.getSelectedItem()+"&")).append(RDadress.getText());
         try {
             matrix = new MultiFormatWriter().encode(new String(stringBuilder.toString().getBytes("UTF-8"),
                             "ISO-8859-1"),BarcodeFormat.QR_CODE, 1000, 1000);
