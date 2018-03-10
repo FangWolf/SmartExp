@@ -94,16 +94,18 @@ public class MainActivity extends AppCompatActivity
         if(result != null) {
             if(result.getContents() == null) {
                 Toast.makeText(this, "退出扫描", Toast.LENGTH_LONG).show();
-            } else {
+            } else if (fangwolf(result.getContents().toString())) {
                 decodecode(result.getContents().toString());
                 //resultQR.setText(result.getContents().toString());
+            } else {
+                Toast.makeText(MainActivity.this,result.getContents().toString(),Toast.LENGTH_SHORT).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    //拆分扫描结果
+    //解码-拆分扫描结果
     private void decodecode(String s) {
         String[] str = s.split("\\&");
         resultQR.setText("寄件人姓名："+str[1]);
@@ -114,6 +116,16 @@ public class MainActivity extends AppCompatActivity
         resultQR6.setText("收件人电话："+str[6]);
         resultQR7.setText("收件人地址："+str[7]);
         resultQR8.setText("收件人详细地址："+str[8]);
+    }
+
+    //判断是否为本工具生成的二维码
+    private boolean fangwolf (String s) {
+        String[] str = s.split("\\&");
+        if (str[0].equals("fangwolf shi handsome")) {
+            return  true;
+        } else {
+            return false;
+        }
     }
 
     @Override

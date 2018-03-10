@@ -102,7 +102,7 @@ public class GenerateQRActivity extends AppCompatActivity {
 
         BitMatrix matrix;
         //拼接生成的信息
-        StringBuilder stringBuilder = new StringBuilder("fangwolf&");
+        StringBuilder stringBuilder = new StringBuilder("fangwolf shi handsome&");
         stringBuilder.append((Sname.getText())+"&").append((Sphone.getText())+"&").append((Sadress.getSelectedItem()+"&")).append((SDadress.getText()+"&"))
                 .append((Rname.getText())+"&").append((Rphone.getText()+"&")).append((Radress.getSelectedItem()+"&")).append(RDadress.getText());
         try {
