@@ -6,10 +6,56 @@
 
     <string name="action_settings">Settings</string>
 
-    <string-array name="diqu">
-        <item>河南省-郑州市-高新区</item>
-        <item>河南省-郑州市-二七区</item>
-        <item>河南省-郑州市-金水区</item>
-        <item>河南省-开封市-顺河区</item>
+    <string-array name="sheng">
+        <item>河南省</item>
+        <item>安徽省</item>
+        <item>陕西省</item>
     </string-array>
+
+    <string-array name="henanshi">
+        <item>郑州市</item>
+        <item>开封市</item>
+    </string-array>
+
+    <string-array name="zhengzhouqu">
+        <item>高新区</item>
+        <item>二七区</item>
+    </string-array>
+
+    <string-array name="kaifengqu">
+        <item>顺河区</item>
+        <item>鼓楼区</item>
+    </string-array>
+
+
+    <string-array name="anhuishi">
+        <item>合肥市</item>
+        <item>六安市</item>
+    </string-array>
+
+    <string-array name="hefeiqu">
+        <item>蜀山区</item>
+        <item>包河区</item>
+    </string-array>
+
+    <string-array name="luaniqu">
+        <item>金安区</item>
+        <item>裕安区</item>
+    </string-array>
+
+    <string-array name="shanxishi">
+        <item>西安市</item>
+        <item>咸阳市</item>
+    </string-array>
+
+    <string-array name="xianqu">
+        <item>长安区</item>
+        <item>莲湖区</item>
+    </string-array>
+
+    <string-array name="xianyangqu">
+        <item>秦都区</item>
+        <item>渭城区</item>
+    </string-array>
+
 </resources>

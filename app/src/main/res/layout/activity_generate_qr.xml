@@ -52,13 +52,35 @@
                 android:layout_height="wrap_content"
                 android:text="地区："/>
 
-            <Spinner
-                android:id="@+id/Sadress"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:entries="@array/diqu">
-            </Spinner>
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/Sadress_province"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/sheng">
+                </Spinner>
+
+                <Spinner
+                    android:id="@+id/Sadress_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/henanshi">
+                </Spinner>
+
+                <Spinner
+                    android:id="@+id/Sadress_district"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:entries="@array/zhengzhouqu">
+                </Spinner>
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,13 +131,33 @@
                 android:layout_height="wrap_content"
                 android:text="地区："/>
 
-            <Spinner
-                android:id="@+id/Radress"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:entries="@array/diqu">
-            </Spinner>
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/Radress_province"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/sheng">
+                </Spinner>
+
+                <Spinner
+                    android:id="@+id/Radress_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/henanshi">
+                </Spinner>
+
+                <Spinner
+                    android:id="@+id/Radress_district"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:entries="@array/zhengzhouqu">
+                </Spinner>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
