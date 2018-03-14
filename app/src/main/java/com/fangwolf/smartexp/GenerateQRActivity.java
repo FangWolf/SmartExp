@@ -95,13 +95,13 @@ public class GenerateQRActivity extends AppCompatActivity {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        /*cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
+*/
         //发件详细地址
         Sadress_province.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -294,6 +294,7 @@ public class GenerateQRActivity extends AppCompatActivity {
             bitmap.recycle();
             bitmap = null;
         }
+        //QR.setImageDrawable(null);
     }
 
     //输入的内容生成二维码

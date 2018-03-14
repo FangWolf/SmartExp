@@ -1,7 +1,15 @@
 package com.fangwolf.smartexp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,8 +17,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,17 +27,15 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    TextView resultQR;
-    TextView resultQR2;
-    TextView resultQR3;
-    TextView resultQR4;
+
     TextView resultQR5;
     TextView resultQR6;
-    TextView resultQR7;
-    TextView resultQR8;
-
+    Button sms;
+    Button call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,19 +44,37 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         final FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.fabMenu);
         FloatingActionButton fabScanQR = (FloatingActionButton) findViewById(R.id.fabScanQR);
         FloatingActionButton fabGenerateQR = (FloatingActionButton) findViewById(R.id.fabGenerateQR);
+        sms = findViewById(R.id.sms);
+        call = findViewById(R.id.call);
 
-        resultQR = (TextView) findViewById(R.id.result);
-        resultQR2 = (TextView) findViewById(R.id.result2);
-        resultQR3 = (TextView) findViewById(R.id.result3);
-        resultQR4 = (TextView) findViewById(R.id.result4);
-        resultQR5= (TextView) findViewById(R.id.result5);
+        resultQR5 = (TextView) findViewById(R.id.result5);
         resultQR6 = (TextView) findViewById(R.id.result6);
-        resultQR7 = (TextView) findViewById(R.id.result7);
-        resultQR8 = (TextView) findViewById(R.id.result8);
+
+        //判断短信权限并发送短信
+        sms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
+                } else {
+                    sendSMS();
+                }
+            }
+        });
+        //判断电话权限并拨打电话
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+                } else {
+                    callPhone();
+                }
+            }
+        });
 
         //扫描按钮
         fabScanQR.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +111,31 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void callPhone() {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + 10086);
+        intent.setData(data);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(intent);
+    }
+
+    private void sendSMS() {
+        //打开短信页面编辑发送
+        /*Intent intent = new Intent(Intent.ACTION_SENDTO);
+        Uri data = Uri.parse("smsto:"+10086);
+        intent.setData(data);
+        intent.putExtra("sms_body", "cxll");
+        startActivity(intent);*/
+        //直接发送
+        android.telephony.SmsManager smsManager = android.telephony.SmsManager.getDefault();
+        List<String> divideContents = smsManager.divideMessage("cxll");
+        for (String text : divideContents) {
+            smsManager.sendTextMessage("10086", null, text,null,null );
+        }
+    }
+
     //处理扫码
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -95,7 +144,9 @@ public class MainActivity extends AppCompatActivity
             if(result.getContents() == null) {
                 Toast.makeText(this, "退出扫描", Toast.LENGTH_LONG).show();
             } else if (fangwolf(result.getContents().toString())) {
-                decodecode(result.getContents().toString());
+                decodecode(result.getContents().toString());    //解码
+
+
                 //resultQR.setText(result.getContents().toString());
             } else {
                 Toast.makeText(MainActivity.this,result.getContents().toString(),Toast.LENGTH_SHORT).show();
@@ -108,14 +159,14 @@ public class MainActivity extends AppCompatActivity
     //解码-拆分扫描结果
     private void decodecode(String s) {
         String[] str = s.split("\\&");
-        resultQR.setText("寄件人姓名："+str[1]);
-        resultQR2.setText("寄件人电话："+str[2]);
-        resultQR3.setText("寄件人地址："+str[3]);
-        resultQR4.setText("寄件人详细地址："+str[4]);
-        resultQR5.setText("收件人姓名："+str[5]);
-        resultQR6.setText("收件人电话："+str[6]);
-        resultQR7.setText("收件人地址："+str[7]);
-        resultQR8.setText("收件人详细地址："+str[8]);
+        /*resultQR.setText("寄件人姓名：" + str[1]);
+        resultQR2.setText("寄件人电话：" + str[2]);
+        resultQR3.setText("寄件人地址：" + str[3]);
+        resultQR4.setText("寄件人详细地址：" + str[4]);*/
+        resultQR5.setText(str[5]);//"收件人姓名："
+        resultQR6.setText(str[6]);//"收件人电话："
+        /*resultQR7.setText("收件人地址：" + str[7]);
+        resultQR8.setText("收件人详细地址：" + str[8]);*/
     }
 
     //判断是否为本工具生成的二维码
@@ -138,6 +189,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /*//创建右上三点
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -156,7 +208,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -168,9 +220,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_generateData) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_setting) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_help) {
 
         }
 

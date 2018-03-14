@@ -9,54 +9,47 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"/>
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="扫描信息"
+        android:textSize="25dp"
+        android:textColor="@android:color/holo_blue_light"/>
 
     <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="暂无扫描内容1"/>
-
-    <TextView
-        android:id="@+id/result2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="暂无扫描内容2"/>
-
-    <TextView
-        android:id="@+id/result3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="暂无扫描内容3"/>
-
-    <TextView
-        android:id="@+id/result4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="暂无扫描内容4"/>
+        android:text="收件人姓名："/>
 
     <TextView
         android:id="@+id/result5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="暂无扫描内容5"/>
+        android:text="暂无扫描内容5"
+        android:textSize="25dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="收件人电话："/>
 
     <TextView
         android:id="@+id/result6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="暂无扫描内容6"
+        android:textSize="25dp"/>
+
+    <Button
+        android:id="@+id/sms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暂无扫描内容6"/>
+        android:text="短信通知"/>
 
-    <TextView
-        android:id="@+id/result7"
+    <Button
+        android:id="@+id/call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暂无扫描内容7"/>
-
-    <TextView
-        android:id="@+id/result8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="暂无扫描内容8"/>
-
-
+        android:text="电话通知"/>
 </LinearLayout>
