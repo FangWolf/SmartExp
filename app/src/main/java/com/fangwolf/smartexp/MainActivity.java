@@ -6,10 +6,8 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -130,9 +128,10 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);*/
         //直接发送
         android.telephony.SmsManager smsManager = android.telephony.SmsManager.getDefault();
-        List<String> divideContents = smsManager.divideMessage("cxll");
+        List<String> divideContents = smsManager.divideMessage("【菜鸟驿站】"+resultQR5.getText().toString()+"，你的包裹到郑州轻工业学院宿舍二号楼菜鸟驿站，请21:00前凭1-3-3015取，联系方式：123456");
         for (String text : divideContents) {
             smsManager.sendTextMessage("10086", null, text,null,null );
+            Toast.makeText(MainActivity.this,"发送成功",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -140,21 +139,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        //Base64 解码
+        String miwen = result.getContents().toString();
+        String jiemi =new String(Base64.decode(miwen.getBytes(), Base64.DEFAULT));
         if(result != null) {
             if(result.getContents() == null) {
                 Toast.makeText(this, "退出扫描", Toast.LENGTH_LONG).show();
-            } else if (fangwolf(result.getContents().toString())) {
-                decodecode(result.getContents().toString());    //解码
-
-
-                //resultQR.setText(result.getContents().toString());
+            } else if (fangwolf(jiemi)) {
+                decodecode(jiemi);    //解码
             } else {
-                Toast.makeText(MainActivity.this,result.getContents().toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"不是专属二维码",Toast.LENGTH_SHORT).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+
 
     //解码-拆分扫描结果
     private void decodecode(String s) {
@@ -218,12 +219,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_scanData) {
 
-        } else if (id == R.id.nav_generateData) {
+        } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_setting) {
-
-        } else if (id == R.id.nav_help) {
-
+        } else if (id == R.id.nav_exit) {
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

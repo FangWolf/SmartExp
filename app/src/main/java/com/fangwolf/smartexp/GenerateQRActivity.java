@@ -6,9 +6,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,8 +26,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GenerateQRActivity extends AppCompatActivity {
 
@@ -315,9 +312,11 @@ public class GenerateQRActivity extends AppCompatActivity {
                 .append(Radress_city.getSelectedItem())
                 .append(Radress_district.getSelectedItem() + "&")
                 .append(RDadress.getText());
+        //Base64 编码
+        String miwen = stringBuilder.toString();
+        String jiami = Base64.encodeToString(miwen.getBytes("utf-8"),Base64.DEFAULT);
         try {
-            matrix = new MultiFormatWriter().encode(new String(stringBuilder.toString().getBytes("UTF-8"),
-                    "ISO-8859-1"), BarcodeFormat.QR_CODE, 1000, 1000);
+            matrix = new MultiFormatWriter().encode(jiami, BarcodeFormat.QR_CODE, 1000, 1000);
             BarcodeEncoder encoder = new BarcodeEncoder();
             bitmap = encoder.createBitmap(matrix);
             QR.setImageBitmap(bitmap);
