@@ -56,23 +56,23 @@ public class GenerateQRActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr);
 
-        Sname = (EditText) findViewById(R.id.Sname);
-        Sphone = (EditText) findViewById(R.id.Sphone);
-        SDadress = (EditText) findViewById(R.id.SDadress);
-        Rname = (EditText) findViewById(R.id.Rname);
-        Rphone = (EditText) findViewById(R.id.Rphone);
-        RDadress = (EditText) findViewById(R.id.RDadress);
+        Sname = findViewById(R.id.Sname);
+        Sphone =  findViewById(R.id.Sphone);
+        SDadress = findViewById(R.id.SDadress);
+        Rname = findViewById(R.id.Rname);
+        Rphone = findViewById(R.id.Rphone);
+        RDadress = findViewById(R.id.RDadress);
 
-        Sadress_province = (Spinner) findViewById(R.id.Sadress_province);
-        Sadress_city = (Spinner) findViewById(R.id.Sadress_city);
-        Sadress_district = (Spinner) findViewById(R.id.Sadress_district);
-        Radress_province = (Spinner) findViewById(R.id.Radress_province);
-        Radress_city = (Spinner) findViewById(R.id.Radress_city);
-        Radress_district = (Spinner) findViewById(R.id.Radress_district);
+        Sadress_province = findViewById(R.id.Sadress_province);
+        Sadress_city = findViewById(R.id.Sadress_city);
+        Sadress_district = findViewById(R.id.Sadress_district);
+        Radress_province = findViewById(R.id.Radress_province);
+        Radress_city = findViewById(R.id.Radress_city);
+        Radress_district =  findViewById(R.id.Radress_district);
 
-        confirm = (Button) findViewById(R.id.confirm);
-        cancel = (Button) findViewById(R.id.cancel);
-        QR = (ImageView) findViewById(R.id.QR);
+        confirm = findViewById(R.id.confirm);
+        cancel = findViewById(R.id.cancel);
+        QR = findViewById(R.id.QR);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,13 +92,6 @@ public class GenerateQRActivity extends AppCompatActivity {
             }
         });
 
-        /*cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-*/
         //发件详细地址
         Sadress_province.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -291,7 +284,6 @@ public class GenerateQRActivity extends AppCompatActivity {
             bitmap.recycle();
             bitmap = null;
         }
-        //QR.setImageDrawable(null);
     }
 
     //输入的内容生成二维码

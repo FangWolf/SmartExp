@@ -35,6 +35,8 @@
             android:name=".GenerateQRActivity"
             android:label="生成">
         </activity>
+        <activity android:name=".AboutActivity">
+        </activity>
     </application>
 
 </manifest>

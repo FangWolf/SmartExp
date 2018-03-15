@@ -40,16 +40,16 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.fabMenu);
-        FloatingActionButton fabScanQR = (FloatingActionButton) findViewById(R.id.fabScanQR);
-        FloatingActionButton fabGenerateQR = (FloatingActionButton) findViewById(R.id.fabGenerateQR);
+        final FloatingActionMenu fabMenu = findViewById(R.id.fabMenu);
+        FloatingActionButton fabScanQR = findViewById(R.id.fabScanQR);
+        FloatingActionButton fabGenerateQR = findViewById(R.id.fabGenerateQR);
         sms = findViewById(R.id.sms);
         call = findViewById(R.id.call);
 
-        resultQR5 = (TextView) findViewById(R.id.result5);
-        resultQR6 = (TextView) findViewById(R.id.result6);
+        resultQR5 = findViewById(R.id.result5);
+        resultQR6 = findViewById(R.id.result6);
 
         //判断短信权限并发送短信
         sms.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
+                } else if (resultQR5.getText().toString().equals("暂无扫描内容")){
+                    Toast.makeText(MainActivity.this,"请扫描后在操作",Toast.LENGTH_SHORT).show();
                 } else {
                     sendSMS();
                 }
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+                } else if (resultQR6.getText().toString().equals("暂无扫描内容")){
+                    Toast.makeText(MainActivity.this,"请扫描后在操作",Toast.LENGTH_SHORT).show();
                 } else {
                     callPhone();
                 }
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity
 
     private void callPhone() {
         Intent intent = new Intent(Intent.ACTION_CALL);
-        Uri data = Uri.parse("tel:" + 10086);
+        Uri data = Uri.parse("tel:" + resultQR6.getText().toString());
         intent.setData(data);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -128,9 +132,9 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);*/
         //直接发送
         android.telephony.SmsManager smsManager = android.telephony.SmsManager.getDefault();
-        List<String> divideContents = smsManager.divideMessage("【菜鸟驿站】"+resultQR5.getText().toString()+"，你的包裹到郑州轻工业学院宿舍二号楼菜鸟驿站，请21:00前凭1-3-3015取，联系方式：123456");
+        List<String> divideContents = smsManager.divideMessage("【菜鸟驿站】"+resultQR5.getText().toString()+"，你的包裹到郑州轻工业学院宿舍二号楼菜鸟驿站，请21:00前领取，联系方式：13512345678");
         for (String text : divideContents) {
-            smsManager.sendTextMessage("10086", null, text,null,null );
+            smsManager.sendTextMessage(resultQR6.getText().toString(), null, text,null,null );
             Toast.makeText(MainActivity.this,"发送成功",Toast.LENGTH_SHORT).show();
         }
     }
@@ -220,12 +224,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_scanData) {
 
         } else if (id == R.id.nav_about) {
-
+            Intent intent = new Intent(MainActivity.this,AboutActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_exit) {
             finish();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
