@@ -92,6 +92,17 @@ public class GenerateQRActivity extends AppCompatActivity {
             }
         });
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Sname.setText("");
+                Sphone.setText("");
+                SDadress.setText("");
+                Rname.setText("");
+                Rphone.setText("");
+                RDadress.setText("");
+            }
+        });
         //发件详细地址
         Sadress_province.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
