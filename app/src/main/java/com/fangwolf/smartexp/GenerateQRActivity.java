@@ -42,7 +42,6 @@ public class GenerateQRActivity extends AppCompatActivity {
     int a = 0;
     Spinner Radress_province;
     Spinner Radress_city;
-    ;
     Spinner Radress_district;
 
     Button confirm;
