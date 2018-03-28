@@ -103,13 +103,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -144,15 +144,18 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         //Base64 解码
-        String miwen = result.getContents().toString();
-        String jiemi =new String(Base64.decode(miwen.getBytes(), Base64.DEFAULT));
+
         if(result != null) {
             if(result.getContents() == null) {
-                Toast.makeText(this, "退出扫描", Toast.LENGTH_LONG).show();
-            } else if (fangwolf(jiemi)) {
-                decodecode(jiemi);    //解码
+                Toast.makeText(this, "你取消了扫描", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(MainActivity.this,"不是专属二维码",Toast.LENGTH_SHORT).show();
+                String miwen = result.getContents().toString();
+                String jiemi =new String(Base64.decode(miwen.getBytes(), Base64.DEFAULT));
+                if (fangwolf(jiemi)) {
+                    decodecode(jiemi);    //解码
+                } else {
+                    Toast.makeText(MainActivity.this,"不是专属二维码",Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -186,7 +189,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
